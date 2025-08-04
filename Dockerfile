@@ -2,12 +2,10 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY . .
+COPY . /
 
 RUN apt update && apt install -y gcc libpq-dev
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-WORKDIR /app/app
-
-CMD ["python", "main.py"]
+CMD ["python", "/app/main.py"]

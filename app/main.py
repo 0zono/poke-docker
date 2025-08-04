@@ -1,8 +1,11 @@
+import time
 from flask import Flask, render_template, request, redirect
-from app.db import get_connection, init_db
+from db import get_connection, init_db
+import logging
+
 
 app = Flask(__name__)
-init_db()
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -18,7 +21,7 @@ def index():
         cur.close()
         conn.close()
 
-        return redirect("/pokemons")
+        return redirect("/pokemon")
 
     return render_template("index.html")
 
@@ -31,7 +34,11 @@ def listar():
     cur.close()
     conn.close()
 
-    return render_template("pokemons.html", pokemons=pokemons)
+    return render_template("pokemon.html", pokemons=pokemons)
 
 if __name__ == "__main__":
+    logging.info("esperando...")
+    time.sleep(10)
+    logging.info("Foi!")
+    init_db()
     app.run(host="0.0.0.0", port=5000)

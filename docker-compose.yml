@@ -10,9 +10,7 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - pgdata:/var/lib/postgresql/data
-    networks:
-      - rede-pokedex
+      - ./pgdata:/var/lib/postgresql/data
 
   app:
     build: .
@@ -26,11 +24,3 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5000:5000"
-    networks:
-      - rede-pokedex
-
-volumes:
-  pgdata:
-
-networks:
-  rede-pokedex:
