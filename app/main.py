@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-from db import get_connection, init_db
+from app.db import get_connection, init_db
 
 app = Flask(__name__)
 init_db()
@@ -22,7 +22,7 @@ def index():
 
     return render_template("index.html")
 
-@app.route("/pokemons")
+@app.route("/pokemon")
 def listar():
     conn = get_connection()
     cur = conn.cursor()
