@@ -1,13 +1,19 @@
 FROM python:3.11-slim
 
-# Clonar o repositório diretamente (simulando "docker build" com git clone)
 RUN apt update && apt install -y git
 
-# Clonar seu repositório diretamente
-RUN git clone https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git /app
+# Clonar o repositório (ajuste para seu repo depois)
+RUN git clone https://github.com/0zono/pokedex-docker.git /app
+
+# Copia os requisitos da raiz do repositório para dentro do container
+WORKDIR /app
+COPY requirements.txt .
+
+# Instala dependências
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Define diretório da aplicação
 WORKDIR /app/app
 
-# Instalar dependências
-RUN pip install --no-cache-dir -r ../requirements.txt
-
+# Executa a aplicação
 CMD ["python", "main.py"]
