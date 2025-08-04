@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pokédex</title>
+</head>
+<body>
+  <h1>Pokémons Registrados</h1>
+  <ul>
+    {% for nome, tipo, nivel in pokemons %}
+      <li>{{ nome }} | {{ tipo }} | Nível {{ nivel }}</li>
+    {% endfor %}
+  </ul>
+  <a href="/">Voltar</a>
+</body>
+</html>
